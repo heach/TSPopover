@@ -14,5 +14,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios
 
   s.source       = { :git => "https://github.com/heach/TSPopover", :tag => "0.1.0" }
+  s.source_files  = "TSPopover"
 
 end
