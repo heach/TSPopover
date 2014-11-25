@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
 
   s.author             = { "Pawel 'Kender' Maczewski"  => "kender@codingslut.com" }
   s.platform     = :ios
-  s.platform     = :ios, "5.0"
 
   s.source       = { :git => "https://github.com/heach/TSPopover", :tag => "0.1.0" }
 
