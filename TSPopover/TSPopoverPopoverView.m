@@ -86,8 +86,13 @@
     float arrowLast = 0;
     
     //CGPoint senderLocationInViewPoint = [self convertPoint:self.arrowPoint fromView:[[UIApplication sharedApplication] keyWindow]];
-    UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
-    CGPoint senderLocationInViewPoint = [self convertPoint:self.arrowPoint fromView:appWindow.rootViewController.view];
+    UIViewController *rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    
+    if (rootViewController.presentedViewController) {
+        rootViewController = rootViewController.presentedViewController;
+    }
+    
+    CGPoint senderLocationInViewPoint = [self convertPoint:self.arrowPoint fromView:rootViewController.view];
 
     if(self.arrowPosition == TSPopoverArrowPositionVertical){
         bgRectSizeWidth = bgSizeWidth;
