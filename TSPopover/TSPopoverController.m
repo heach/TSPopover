@@ -99,8 +99,13 @@
     UIView *senderView = [[senderEvent.allTouches anyObject] view];
     CGPoint applicationFramePoint = CGPointMake(screenRect.origin.x,0-screenRect.origin.y);
     //CGPoint senderLocationInWindowPoint = [[[UIApplication sharedApplication] keyWindow] convertPoint:applicationFramePoint fromView:senderView];
-    UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
-    CGPoint senderLocationInWindowPoint = [appWindow.rootViewController.view convertPoint:applicationFramePoint fromView:senderView];
+    UIViewController *rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    
+    if (rootViewController.presentedViewController) {
+        rootViewController = rootViewController.presentedViewController;
+    }
+    
+    CGPoint senderLocationInWindowPoint =  [rootViewController.view convertPoint:applicationFramePoint fromView:senderView];
     CGRect senderFrame = [[[senderEvent.allTouches anyObject] view] frame];
     senderFrame.origin.x = senderLocationInWindowPoint.x;
     senderFrame.origin.y = senderLocationInWindowPoint.y;
@@ -185,10 +190,13 @@
     
     [self.view addSubview:popoverView];
     
-    UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
-    //[appWindow addSubview:self.view];
+    UIViewController *rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    
+    if (rootViewController.presentedViewController) {
+        rootViewController = rootViewController.presentedViewController;
+    }
 
-    [appWindow.rootViewController.view addSubview:self.view];
+    [rootViewController.view addSubview:self.view];
 
     
     [UIView animateWithDuration:0.0
