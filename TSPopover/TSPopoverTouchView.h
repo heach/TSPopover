@@ -12,6 +12,6 @@
 
 @interface TSPopoverTouchView : UIView
 
-@property (strong,nonatomic) id delegate;
+@property (weak, nonatomic) id delegate;
 
 @end
